@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "area_name": "Centro Oriente",
+    "coordinates": [
+      {
+        "latitude": "-40.577053",
+        "longitude": "-73.138533"
+      },
+      {
+        "latitude": "-40.578062",
+        "longitude": "-73.116597"
+      },
+      {
+        "latitude": "-40.583437",
+        "longitude": "-73.108789"
+      },
+      {
+        "latitude": "-40.594312",
+        "longitude": "-73.123917"
+      },
+      {
+        "latitude": "-40.585970",
+        "longitude": "-73.137821"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "area_name": "Bellavista",
+    "coordinates": [
+      {
+        "latitude": "-40.583437",
+        "longitude": "-73.108789"
+      },
+      {
+        "latitude": "-40.587052",
+        "longitude": "-73.103221"
+      },
+      {
+        "latitude": "-40.590566",
+        "longitude": "-73.100018"
+      },
+      {
+        "latitude": "-40.599982",
+        "longitude": "-73.101343"
+      },
+      {
+        "latitude": "-40.601481",
+        "longitude": "-73.124003"
+      },
+      {
+        "latitude": "-40.594312",
+        "longitude": "-73.123917"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "area_name": "Centro Norte",
+    "coordinates": [
+      {
+        "latitude": "-40.572605",
+        "longitude": "-73.147185"
+      },
+      {
+        "latitude": "-40.568792",
+        "longitude": "-73.143053"
+      },
+      {
+        "latitude": "-40.569671",
+        "longitude": "-73.115266"
+      },
+      {
+        "latitude": "-40.567493",
+        "longitude": "-73.108388"
+      },
+      {
+        "latitude": "-40.577426",
+        "longitude": "-73.111713"
+      },
+      {
+        "latitude": "-40.579591",
+        "longitude": "-73.114383"
+      },
+      {
+        "latitude": "-40.578062",
+        "longitude": "-73.116597"
+      },
+      {
+        "latitude": "-40.577053",
+        "longitude": "-73.138533"
+      },
+      {
+        "latitude": "-40.578221",
+        "longitude": "-73.144490"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "area_name": "Pilauco/Los Notros",
+    "coordinates": [
+      {
+        "latitude": "-40.568792",
+        "longitude": "-73.143053"
+      },
+      {
+        "latitude": "-40.563901",
+        "longitude": "-73.142818"
+      },
+      {
+        "latitude": "-40.559706",
+        "longitude": "-73.119676"
+      },
+      {
+        "latitude": "-40.551986",
+        "longitude": "-73.121211"
+      },
+      {
+        "latitude": "-40.549422",
+        "longitude": "-73.103177"
+      },
+      {
+        "latitude": "-40.565788",
+        "longitude": "-73.098111"
+      },
+      {
+        "latitude": "-40.571006",
+        "longitude": "-73.099274"
+      },
+      {
+        "latitude": "-40.567493",
+        "longitude": "-73.108388"
+      },
+      {
+        "latitude": "-40.569671",
+        "longitude": "-73.115266"
+      }
+    ]
+  }
+]

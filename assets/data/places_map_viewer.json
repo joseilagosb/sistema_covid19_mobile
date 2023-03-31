@@ -1,0 +1,232 @@
+[
+  {
+    "id": "1",
+    "place_name": "Lider Casona Osorno",
+    "place_short_name": "Líder Casona",
+    "coordinates": [
+      {
+        "latitude": "-40.589958",
+        "longitude": "-73.104255"
+      },
+      {
+        "latitude": "-40.589090",
+        "longitude": "-73.102887"
+      },
+      {
+        "latitude": "-40.588451",
+        "longitude": "-73.103654"
+      },
+      {
+        "latitude": "-40.589371",
+        "longitude": "-73.105027"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "place_name": "Homecenter Sodimac/Sodimac Constructor",
+    "place_short_name": "Sodimac",
+    "coordinates": [
+      {
+        "latitude": "-40.587713",
+        "longitude": "-73.103316"
+      },
+      {
+        "latitude": "-40.588532",
+        "longitude": "-73.104282"
+      },
+      {
+        "latitude": "-40.587738",
+        "longitude": "-73.105993"
+      },
+      {
+        "latitude": "-40.586646",
+        "longitude": "-73.104748"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "place_name": "Farmacia Cruz Verde Ercilla",
+    "place_short_name": "Cruz Verde Ercilla",
+    "coordinates": [
+      {
+        "latitude": "-40.586722",
+        "longitude": "-73.122973"
+      },
+      {
+        "latitude": "-40.586660",
+        "longitude": "-73.122816"
+      },
+      {
+        "latitude": "-40.586816",
+        "longitude": "-73.122713"
+      },
+      {
+        "latitude": "-40.586876",
+        "longitude": "-73.122870"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "place_name": "Easy Osorno",
+    "place_short_name": "Easy",
+    "coordinates": [
+      {
+        "latitude": "-40.581130",
+        "longitude": "-73.116766"
+      },
+      {
+        "latitude": "-40.580760",
+        "longitude": "-73.117297"
+      },
+      {
+        "latitude": "-40.579704",
+        "longitude": "-73.116090"
+      },
+      {
+        "latitude": "-40.580063",
+        "longitude": "-73.115506"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "place_name": "Santa Isabel/Farmacia Salcobrand",
+    "place_short_name": "Santa Isabel Ercilla",
+    "coordinates": [
+      {
+        "latitude": "-40.581365",
+        "longitude": "-73.117034"
+      },
+      {
+        "latitude": "-40.581691",
+        "longitude": "-73.117367"
+      },
+      {
+        "latitude": "-40.581299",
+        "longitude": "-73.117946"
+      },
+      {
+        "latitude": "-40.580994",
+        "longitude": "-73.117597"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "place_name": "Unimarc Oriente/Farmacia Cruz Verde",
+    "place_short_name": "Unimarc Oriente",
+    "coordinates": [
+      {
+        "latitude": "-40.576504",
+        "longitude": "-73.111467"
+      },
+      {
+        "latitude": "-40.576624",
+        "longitude": "-73.110746"
+      },
+      {
+        "latitude": "-40.577366",
+        "longitude": "-73.110942"
+      },
+      {
+        "latitude": "-40.577280",
+        "longitude": "-73.111639"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "place_name": "Yogui Market",
+    "place_short_name": "Yogui Market",
+    "coordinates": [
+      {
+        "latitude": "-40.577130",
+        "longitude": "-73.108382"
+      },
+      {
+        "latitude": "-40.577196",
+        "longitude": "-73.108175"
+      },
+      {
+        "latitude": "-40.577408",
+        "longitude": "-73.108255"
+      },
+      {
+        "latitude": "-40.577354",
+        "longitude": "-73.108449"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "place_name": "Construmart Osorno",
+    "place_short_name": "Construmart",
+    "coordinates": [
+      {
+        "latitude": "-40.575691",
+        "longitude": "-73.110952"
+      },
+      {
+        "latitude": "-40.575761",
+        "longitude": "-73.110611"
+      },
+      {
+        "latitude": "-40.576190",
+        "longitude": "-73.110776"
+      },
+      {
+        "latitude": "-40.576111",
+        "longitude": "-73.111116"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "place_name": "Hipermercado Líder Errázuriz",
+    "place_short_name": "Líder Errázuriz",
+    "coordinates": [
+      {
+        "latitude": "-40.572415",
+        "longitude": "-73.127319"
+      },
+      {
+        "latitude": "-40.572501",
+        "longitude": "-73.126360"
+      },
+      {
+        "latitude": "-40.573018",
+        "longitude": "-73.126428"
+      },
+      {
+        "latitude": "-40.572926",
+        "longitude": "-73.127441"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "place_name": "Panadería La Estrella",
+    "place_short_name": "La Estrella",
+    "coordinates": [
+      {
+        "latitude": "-40.583240",
+        "longitude": "-73.109705"
+      },
+      {
+        "latitude": "-40.583336",
+        "longitude": "-73.109574"
+      },
+      {
+        "latitude": "-40.583465",
+        "longitude": "-73.109709"
+      },
+      {
+        "latitude": "-40.583358",
+        "longitude": "-73.109862"
+      }
+    ]
+  }
+]
