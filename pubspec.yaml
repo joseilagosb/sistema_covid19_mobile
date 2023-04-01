@@ -76,6 +76,10 @@ flutter:
   assets:
     - assets/data/places_map_viewer.json
     - assets/data/areas_map_viewer.json
+
+    - assets/icons/places_info/crowds.png
+    - assets/icons/places_info/safety.png
+    - assets/icons/places_info/waiting_time.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

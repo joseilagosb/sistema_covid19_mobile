@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:vacapp_mobile/pages/map_view/bloc/map_view_bloc.dart';
-import 'package:vacapp_mobile/pages/map_view/widgets/custom_floating_appbar.dart';
 
+import 'package:vacapp_mobile/pages/map_view/bloc/map_view_bloc.dart';
+
+import 'package:vacapp_mobile/pages/map_view/widgets/custom_floating_appbar.dart';
 import 'package:vacapp_mobile/pages/map_view/widgets/google_map_view.dart';
-import 'package:vacapp_mobile/widgets/loading_spinner.dart';
+import 'package:vacapp_mobile/pages/map_view/widgets/markers_visibility_toggler.dart';
+import 'package:vacapp_mobile/pages/map_view/widgets/places_info_toggler.dart';
+
+import 'package:vacapp_mobile/common_widgets/loading_spinner.dart';
 
 import 'package:vacapp_mobile/utils/map_styles.dart';
 
@@ -72,6 +75,14 @@ class _MapViewScreenState extends State<MapViewScreen> {
           child: const LoadingSpinner(message: "Cargando mapa de Google Maps"),
         ),
       ),
+      Visibility(
+        visible: state.isMapUpdating,
+        maintainState: true,
+        child: DecoratedBox(
+          decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
+          child: const LoadingSpinner(message: "Actualizando elementos del mapa"),
+        ),
+      )
     ];
   }
 
@@ -85,6 +96,8 @@ class _MapViewScreenState extends State<MapViewScreen> {
         initialCameraPosition: const LatLng(-40.587824, -73.103046),
         initialZoom: state.currentMapZoom.toDouble(),
       ),
+      const PlacesInfoToggler(),
+      const MarkersVisibilityToggler(),
       CustomFloatingAppbar(scaffoldKey: widget.scaffoldKey),
     ];
   }

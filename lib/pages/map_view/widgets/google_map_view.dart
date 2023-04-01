@@ -49,7 +49,7 @@ class _GoogleMapViewState extends State<GoogleMapView> {
       ),
       polygons: {...widget.placePolygons, ...widget.areaPolygons},
       markers: widget.placeMarkers,
-      // onCameraIdle: () => bloc.add(ChangePlacePaintersType()),
+      onCameraIdle: () => bloc.add(ChangePlacePaintersType()),
       onCameraMove: (CameraPosition cameraPosition) => bloc.add(
         CameraMove(
           newZoom: cameraPosition.zoom.toInt(),

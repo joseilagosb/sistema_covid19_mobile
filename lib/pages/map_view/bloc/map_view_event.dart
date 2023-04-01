@@ -13,3 +13,10 @@ class CameraMove extends MapViewEvent {
   });
   final int newZoom;
 }
+
+class SelectPlacesInfo extends MapViewEvent {
+  SelectPlacesInfo({required this.selectedPlaceInfoItem});
+  final PlacesInfoItem selectedPlaceInfoItem;
+}
+
+class ChangePlacePaintersType extends MapViewEvent {}

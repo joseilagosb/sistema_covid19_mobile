@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vacapp_mobile/widgets/common/buttons/custom_big_icon_button.dart';
+import 'package:vacapp_mobile/common_widgets/buttons/custom_big_icon_button.dart';
 import 'package:vacapp_mobile/pages/search/screens/place_activities_index_search.dart';
 import 'package:vacapp_mobile/pages/search/screens/place_types_index_screen.dart';
 import 'package:vacapp_mobile/pages/search/screens/places_index_screen.dart';

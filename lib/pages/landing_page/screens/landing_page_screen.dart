@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:vacapp_mobile/pages/map_view/screens/map_view_screen.dart';
-import 'package:vacapp_mobile/pages/travel_scheduler/travel_scheduler_splash_page.dart';
-import 'package:vacapp_mobile/pages/send_feedback/send_feedback_splash_page.dart';
+import 'package:vacapp_mobile/common_widgets/drawer_menu.dart';
 
 import 'package:vacapp_mobile/pages/landing_page/bloc/landing_page_bloc.dart';
 import 'package:vacapp_mobile/pages/landing_page/models/tab_item.dart';
-
-import 'package:vacapp_mobile/widgets/common/drawer_menu.dart';
+import 'package:vacapp_mobile/pages/map_view/screens/map_view_screen.dart';
+import 'package:vacapp_mobile/pages/travel_scheduler/travel_scheduler_splash_page.dart';
+import 'package:vacapp_mobile/pages/send_feedback/send_feedback_splash_page.dart';
 
 Map<TabItem, Widget Function(BuildContext, GlobalKey<ScaffoldState>)> get _widgetBuilders {
   return {
