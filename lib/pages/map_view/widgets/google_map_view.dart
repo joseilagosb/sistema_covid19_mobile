@@ -33,12 +33,14 @@ class _GoogleMapViewState extends State<GoogleMapView> {
   void _onMapCreated(GoogleMapController controller, MapViewBloc bloc) {
     controller.setMapStyle(widget.mapStyle);
     _controller.complete(controller);
+    bloc.add(BindMapController(mapController: controller));
     bloc.add(ShowMap());
   }
 
   @override
   Widget build(BuildContext context) {
     final MapViewBloc bloc = BlocProvider.of<MapViewBloc>(context);
+
     return GoogleMap(
       onMapCreated: (controller) => _onMapCreated(controller, bloc),
       zoomGesturesEnabled: true,
@@ -51,9 +53,7 @@ class _GoogleMapViewState extends State<GoogleMapView> {
       markers: widget.placeMarkers,
       onCameraIdle: () => bloc.add(ChangePlacePaintersType()),
       onCameraMove: (CameraPosition cameraPosition) => bloc.add(
-        CameraMove(
-          newZoom: cameraPosition.zoom.toInt(),
-        ),
+        UpdateMapZoom(newZoom: cameraPosition.zoom.toInt()),
       ),
     );
   }

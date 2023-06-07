@@ -1,20 +1,23 @@
-class GraphQLQueries {
-  static String allPlaces = """
+class GraphQlQueries {
+  static String mapViewData = """
     query {
       allPlaces {
         id
         place_name
         place_short_name
+        place_type {
+          id
+          place_type_name
+        }
+        services {
+          id
+          service_name
+        }
         coordinates {
           latitude
           longitude
         }
       }
-    }
-  """;
-
-  static String allAreas = """
-    query {
       allAreas {
         id
         area_name
@@ -22,6 +25,14 @@ class GraphQLQueries {
           latitude
           longitude
         }
+      }
+      allPlaceTypes{
+        id
+        place_type_name
+      }
+      allServices{
+        id
+        service_name
       }
     }
   """;

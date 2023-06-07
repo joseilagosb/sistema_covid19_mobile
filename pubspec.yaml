@@ -80,6 +80,10 @@ flutter:
     - assets/icons/places_info/crowds.png
     - assets/icons/places_info/safety.png
     - assets/icons/places_info/waiting_time.png
+
+    - assets/icons/map_view/floating_buttons/filter.png
+    - assets/icons/map_view/floating_buttons/legend.png
+    - assets/icons/map_view/symbols/swipe-right.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

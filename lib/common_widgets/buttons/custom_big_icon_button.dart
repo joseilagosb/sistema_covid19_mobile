@@ -5,17 +5,17 @@ class CustomBigIconButton extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.label,
-    required this.onClickButton,
+    required this.onPressed,
   }) : super(key: key);
 
   final IconData icon;
   final String label;
-  final Function() onClickButton;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onClickButton,
+      onTap: onPressed,
       child: Container(
         padding: const EdgeInsets.all(10),
         height: 100.0,

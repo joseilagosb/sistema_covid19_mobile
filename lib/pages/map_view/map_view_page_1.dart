@@ -247,127 +247,130 @@ class _MapViewPageState extends State<MapViewPage> {
   }
 
   Widget showPlaceFilterSelector() {
-    return Stack(children: <Widget>[
-      Positioned(
-        width: MediaQuery.of(context).size.width * 0.55,
-        right: MediaQuery.of(context).size.width * 0.02,
-        bottom: MediaQuery.of(context).size.height * 0.17,
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-            color: Colors.orangeAccent[100],
-            borderRadius: BorderRadius.circular(DIALOG_PADDING),
-          ),
-          child: Column(
-            children: [
-              Card(
-                elevation: 0,
-                color: Colors.transparent,
-                child: ListTile(
-                  onTap: () {
-                    Navigator.pop(context);
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return FilterPlaces(
-                          listParameters: List.generate(
-                            listPlaceTypes.length,
-                            (i) => listPlaceTypes[i].getName(),
-                          ),
-                          onApplyButtonClick: (selectedPlaceTypes) {
-                            setState(
-                              () {
-                                listPlacesMap.clear();
-                                polygonPlaces.clear();
-                                placeCrowdMarkers.clear();
-                                placeQueueMarkers.clear();
-                                covidSafetyMarkers.clear();
-                                GraphQLFunctions.fillPlacesListByPlaceType(selectedPlaceTypes).then(
-                                  (places) {
-                                    listPlacesMap = places;
-                                    visualizePlaces();
-                                    isFilterApplied = true;
-                                  },
-                                );
-                              },
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
-                  dense: true,
-                  contentPadding: const EdgeInsets.all(0.0),
-                  leading: const Icon(
-                    Icons.place,
-                    color: Colors.black,
-                    size: 30.0,
-                  ),
-                  title: Text(
-                    'Por tipos de lugar',
-                    textAlign: TextAlign.right,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontSize: 14.0, fontWeight: FontWeight.w800),
-                  ),
-                ),
-              ),
-              const Divider(),
-              Card(
-                elevation: 0,
-                color: Colors.transparent,
-                child: ListTile(
-                  onTap: () {
-                    Navigator.pop(context);
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return FilterPlaces(
-                          listParameters: List.generate(
-                            listServices.length,
-                            (i) => listServices[i].getName(),
-                          ),
-                          onApplyButtonClick: (selectedServices) {
-                            setState(
-                              () {
-                                listPlacesMap.clear();
-                                polygonPlaces.clear();
-                                placeCrowdMarkers.clear();
-                                placeQueueMarkers.clear();
-                                covidSafetyMarkers.clear();
-                                GraphQLFunctions.fillPlacesListByService(selectedServices).then(
-                                  (places) {
-                                    listPlacesMap = places;
-                                    visualizePlaces();
-                                    isFilterApplied = true;
-                                  },
-                                );
-                              },
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
-                  contentPadding: const EdgeInsets.all(0.0),
-                  dense: true,
-                  leading: const Icon(Icons.account_balance, color: Colors.black, size: 30.0),
-                  title: Text(
-                    'Por servicios',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontSize: 14.0, fontWeight: FontWeight.w800),
-                    textAlign: TextAlign.right,
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          width: MediaQuery.of(context).size.width * 0.55,
+          right: MediaQuery.of(context).size.width * 0.02,
+          bottom: MediaQuery.of(context).size.height * 0.17,
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: Colors.orangeAccent[100],
+              borderRadius: BorderRadius.circular(DIALOG_PADDING),
+            ),
+            child: Column(
+              children: [
+                Card(
+                  elevation: 0,
+                  color: Colors.transparent,
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.pop(context);
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return FilterPlaces(
+                            listParameters: List.generate(
+                              listPlaceTypes.length,
+                              (i) => listPlaceTypes[i].getName(),
+                            ),
+                            onApplyButtonClick: (selectedPlaceTypes) {
+                              setState(
+                                () {
+                                  listPlacesMap.clear();
+                                  polygonPlaces.clear();
+                                  placeCrowdMarkers.clear();
+                                  placeQueueMarkers.clear();
+                                  covidSafetyMarkers.clear();
+                                  GraphQLFunctions.fillPlacesListByPlaceType(selectedPlaceTypes)
+                                      .then(
+                                    (places) {
+                                      listPlacesMap = places;
+                                      visualizePlaces();
+                                      isFilterApplied = true;
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                    dense: true,
+                    contentPadding: const EdgeInsets.all(0.0),
+                    leading: const Icon(
+                      Icons.place,
+                      color: Colors.black,
+                      size: 30.0,
+                    ),
+                    title: Text(
+                      'Por tipos de lugar',
+                      textAlign: TextAlign.right,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontSize: 14.0, fontWeight: FontWeight.w800),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                const Divider(),
+                Card(
+                  elevation: 0,
+                  color: Colors.transparent,
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.pop(context);
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return FilterPlaces(
+                            listParameters: List.generate(
+                              listServices.length,
+                              (i) => listServices[i].getName(),
+                            ),
+                            onApplyButtonClick: (selectedServices) {
+                              setState(
+                                () {
+                                  listPlacesMap.clear();
+                                  polygonPlaces.clear();
+                                  placeCrowdMarkers.clear();
+                                  placeQueueMarkers.clear();
+                                  covidSafetyMarkers.clear();
+                                  GraphQLFunctions.fillPlacesListByService(selectedServices).then(
+                                    (places) {
+                                      listPlacesMap = places;
+                                      visualizePlaces();
+                                      isFilterApplied = true;
+                                    },
+                                  );
+                                },
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                    contentPadding: const EdgeInsets.all(0.0),
+                    dense: true,
+                    leading: const Icon(Icons.account_balance, color: Colors.black, size: 30.0),
+                    title: Text(
+                      'Por servicios',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontSize: 14.0, fontWeight: FontWeight.w800),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 
   @override

@@ -59,7 +59,6 @@ class _LandingPageScreenState extends State<LandingPageScreen> {
             ],
             currentIndex: state.currentTab.index,
             onTap: (index) => bloc.add(SelectTab(selectedTab: TabItem.values[index])),
-            // onTap: (index) => {},
             backgroundColor: Colors.orange,
             selectedItemColor: Colors.black,
           ),

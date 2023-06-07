@@ -40,19 +40,19 @@ class SearchDelegateDefaultScreen extends StatelessWidget {
       CustomBigIconButton(
         icon: Icons.icecream,
         label: "Todos los lugares de la ciudad",
-        onClickButton: () => _navigateToPlacesIndex(context),
+        onPressed: () => _navigateToPlacesIndex(context),
       ),
       const SizedBox(height: 10.0),
       CustomBigIconButton(
         icon: Icons.panorama,
         label: "Las actividades disponibles",
-        onClickButton: () => _navigateToPlaceActivitiesIndex(context),
+        onPressed: () => _navigateToPlaceActivitiesIndex(context),
       ),
       const SizedBox(height: 10.0),
       CustomBigIconButton(
         icon: Icons.facebook,
         label: "Los tipos de lugar que puedes encontrar",
-        onClickButton: () => _navigateToPlaceTypesIndex(context),
+        onPressed: () => _navigateToPlaceTypesIndex(context),
       ),
     ];
   }

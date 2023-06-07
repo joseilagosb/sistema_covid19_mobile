@@ -8,6 +8,7 @@ import 'package:vacapp_mobile/pages/map_view/widgets/custom_floating_appbar.dart
 import 'package:vacapp_mobile/pages/map_view/widgets/google_map_view.dart';
 import 'package:vacapp_mobile/pages/map_view/widgets/markers_visibility_toggler.dart';
 import 'package:vacapp_mobile/pages/map_view/widgets/places_info_toggler.dart';
+import 'package:vacapp_mobile/pages/map_view/widgets/floating_buttons_container.dart';
 
 import 'package:vacapp_mobile/common_widgets/loading_spinner.dart';
 
@@ -98,6 +99,7 @@ class _MapViewScreenState extends State<MapViewScreen> {
       ),
       const PlacesInfoToggler(),
       const MarkersVisibilityToggler(),
+      const FloatingButtonsContainer(),
       CustomFloatingAppbar(scaffoldKey: widget.scaffoldKey),
     ];
   }
