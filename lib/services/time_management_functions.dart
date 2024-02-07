@@ -6,18 +6,17 @@ import 'package:vacapp_mobile/utils/constants.dart';
 class TimeManagementFunctions {
   static DateTime roundUpDateTime(DateTime time) {
     Duration delta = const Duration(hours: 1);
-    return DateTime.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch +
-        time.millisecondsSinceEpoch % delta.inMilliseconds);
+    return DateTime.fromMillisecondsSinceEpoch(
+        time.millisecondsSinceEpoch + time.millisecondsSinceEpoch % delta.inMilliseconds);
   }
 
   static DateTime roundDownDateTime(DateTime time) {
     Duration delta = const Duration(hours: 1);
-    return DateTime.fromMillisecondsSinceEpoch(time.millisecondsSinceEpoch -
-        time.millisecondsSinceEpoch % delta.inMilliseconds);
+    return DateTime.fromMillisecondsSinceEpoch(
+        time.millisecondsSinceEpoch - time.millisecondsSinceEpoch % delta.inMilliseconds);
   }
 
-  static Map<int, String> getOpenHoursInterval(
-      DateTime openingTime, DateTime closingTime) {
+  static Map<int, String> getOpenHoursInterval(DateTime openingTime, DateTime closingTime) {
     DateTime roundedOpeningTime = roundUpDateTime(openingTime);
     DateTime roundedClosingTime = roundUpDateTime(closingTime);
 
@@ -27,8 +26,8 @@ class TimeManagementFunctions {
                 ? 24 - roundedOpeningTime.hour
                 : roundedClosingTime.hour - roundedOpeningTime.hour,
             (index) => roundedOpeningTime.hour + index),
-        Constants.HOURS_OF_DAY.getRange(roundedOpeningTime.hour,
-            roundedClosingTime.hour == 0 ? 24 : roundedClosingTime.hour));
+        Constants.HOURS_OF_DAY.getRange(
+            roundedOpeningTime.hour, roundedClosingTime.hour == 0 ? 24 : roundedClosingTime.hour));
   }
 
   static Map<int, String> getOpenDaysInterval(List<OpenHours> openHours) {
@@ -41,8 +40,7 @@ class TimeManagementFunctions {
   }
 
   static DateTime timeStringToDateTime(int time) {
-    String timeString =
-        time < 10 ? "0${time.toString()}" : "${time.toString()}";
+    String timeString = time < 10 ? "0${time.toString()}" : "${time.toString()}";
     return DateTime.parse("2020-01-01 " + timeString + ":00:00");
   }
 

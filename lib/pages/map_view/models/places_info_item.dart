@@ -9,9 +9,9 @@ class PlacesInfoItemData {
   static const Map<PlacesInfoItem, PlacesInfoItemData> allItems = {
     PlacesInfoItem.crowds: PlacesInfoItemData(
         title: "Aglomeraciones", iconPath: "assets/icons/places_info/crowds.png"),
-    PlacesInfoItem.safety: PlacesInfoItemData(
-        title: "Personas esperando", iconPath: "assets/icons/places_info/safety.png"),
+    PlacesInfoItem.safety:
+        PlacesInfoItemData(title: "Seguridad", iconPath: "assets/icons/places_info/safety.png"),
     PlacesInfoItem.service: PlacesInfoItemData(
-        title: "Puntaje de calidad", iconPath: "assets/icons/places_info/waiting_time.png"),
+        title: "Personas esperando", iconPath: "assets/icons/places_info/waiting_time.png"),
   };
 }

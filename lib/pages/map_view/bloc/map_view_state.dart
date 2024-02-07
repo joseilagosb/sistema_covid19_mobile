@@ -17,11 +17,13 @@ class MapViewCreatingMapObjects extends MapViewState {
     required this.areas,
     required this.placeTypes,
     required this.services,
+    required this.placeSnapshots,
   });
   final List<Place> places;
   final List<Area> areas;
   final List<PlaceType> placeTypes;
   final List<Service> services;
+  final Map<int, PlaceSnapshot> placeSnapshots;
 }
 
 class MapViewUpdatingMapObjects extends MapViewState {
@@ -30,12 +32,14 @@ class MapViewUpdatingMapObjects extends MapViewState {
     required this.areas,
     required this.placeTypes,
     required this.services,
+    required this.placeSnapshots,
   });
 
   final List<Place> places;
   final List<Area> areas;
   final List<PlaceType> placeTypes;
   final List<Service> services;
+  final Map<int, PlaceSnapshot> placeSnapshots;
 }
 
 class MapViewLoaded extends MapViewState {
@@ -46,6 +50,7 @@ class MapViewLoaded extends MapViewState {
     required this.areas,
     required this.placeTypes,
     required this.services,
+    required this.placeSnapshots,
     required this.placePolygons,
     required this.areaPolygons,
     required this.placeMarkers,
@@ -62,6 +67,7 @@ class MapViewLoaded extends MapViewState {
   final List<Area> areas;
   final List<PlaceType> placeTypes;
   final List<Service> services;
+  final Map<int, PlaceSnapshot> placeSnapshots;
   final Set<Polygon> placePolygons;
   final Set<Polygon> areaPolygons;
   final Set<Marker> placeMarkers;
@@ -82,6 +88,7 @@ class MapViewLoaded extends MapViewState {
     List<Area>? areas,
     List<PlaceType>? placeTypes,
     List<Service>? services,
+    Map<int, PlaceSnapshot>? placeSnapshots,
     Set<Polygon>? placePolygons,
     Set<Polygon>? areaPolygons,
     Set<Marker>? placeMarkers,
@@ -99,6 +106,7 @@ class MapViewLoaded extends MapViewState {
         areas: areas ?? this.areas,
         placeTypes: placeTypes ?? this.placeTypes,
         services: services ?? this.services,
+        placeSnapshots: placeSnapshots ?? this.placeSnapshots,
         placePolygons: placePolygons ?? this.placePolygons,
         areaPolygons: areaPolygons ?? this.areaPolygons,
         placeMarkers: placeMarkers ?? this.placeMarkers,

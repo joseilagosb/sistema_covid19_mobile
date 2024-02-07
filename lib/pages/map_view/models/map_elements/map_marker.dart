@@ -8,30 +8,37 @@ import 'package:vacapp_mobile/pages/map_view/models/places_info_item.dart';
 import 'package:vacapp_mobile/pages/map_view/utils/coordinates.dart';
 
 abstract class MapMarker extends MapElement<Marker> {
-  MapMarker({required Locality locality, required this.placePaintersType})
-      : super(locality: locality);
+  MapMarker({
+    required Locality locality,
+    required void Function(Locality) onPressed,
+    required this.placePaintersType,
+  }) : super(locality: locality, onPressed: onPressed);
   PlacePaintersType placePaintersType;
 
   static MapMarker factory({
     required Locality locality,
+    required void Function(Locality) onPressed,
     required PlacePaintersType placePaintersType,
-    PlacesInfoItem? placeInfoMode,
+    required PlacesInfoItem placeInfoMode,
   }) {
     if (locality is Place) {
       return PlaceMarker(
         locality: locality,
+        onPressed: onPressed,
         placePaintersType: placePaintersType,
-        placeInfoMode: placeInfoMode ?? PlacesInfoItem.crowds,
+        placeInfoMode: placeInfoMode,
       );
     } else if (locality is Area) {
       return AreaMarker(
         locality: locality,
+        onPressed: onPressed,
         placePaintersType: placePaintersType,
       );
     } else {
       // TODO: Crear Null painter caso de uso
       return NullMarker(
         locality: NullLocality(),
+        onPressed: (locality) => {},
         placePaintersType: placePaintersType,
       );
     }
@@ -51,6 +58,7 @@ abstract class MapMarker extends MapElement<Marker> {
       markerId: getMarkerId(),
       position: center,
       icon: icon,
+      onTap: () => onPressed(locality),
     );
   }
 }
@@ -60,9 +68,10 @@ class PlaceMarker extends MapMarker {
 
   PlaceMarker({
     required Locality locality,
+    required void Function(Locality) onPressed,
     required PlacePaintersType placePaintersType,
     required this.placeInfoMode,
-  }) : super(locality: locality, placePaintersType: placePaintersType);
+  }) : super(locality: locality, onPressed: onPressed, placePaintersType: placePaintersType);
 
   @override
   Future<BitmapDescriptor> createIcon() async {
@@ -77,8 +86,9 @@ class PlaceMarker extends MapMarker {
 class AreaMarker extends MapMarker {
   AreaMarker({
     required Locality locality,
+    required void Function(Locality) onPressed,
     required PlacePaintersType placePaintersType,
-  }) : super(locality: locality, placePaintersType: placePaintersType);
+  }) : super(locality: locality, onPressed: onPressed, placePaintersType: placePaintersType);
 
   @override
   Future<Marker> create() async {
@@ -98,8 +108,9 @@ class AreaMarker extends MapMarker {
 class NullMarker extends MapMarker {
   NullMarker({
     required Locality locality,
+    required void Function(Locality) onPressed,
     required PlacePaintersType placePaintersType,
-  }) : super(locality: locality, placePaintersType: placePaintersType);
+  }) : super(locality: locality, onPressed: onPressed, placePaintersType: placePaintersType);
 
   @override
   Future<BitmapDescriptor> createIcon() async {

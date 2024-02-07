@@ -9,9 +9,11 @@ class GraphQlApi extends Api {
 
   // TODO: BETTER ERROR HANDLING
   @override
-  Future<Map<String, dynamic>> runQuery(String query) async {
+  Future<Map<String, dynamic>> runQuery(String query,
+      {Map<String, dynamic> variables = const {}}) async {
     try {
-      QueryResult result = await client.query(QueryOptions(document: gql(query)));
+      QueryResult result =
+          await client.query(QueryOptions(document: gql(query), variables: variables));
       if (result.hasException) {
         throw Exception(result.exception.toString());
       }

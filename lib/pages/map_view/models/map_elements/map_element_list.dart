@@ -7,10 +7,12 @@ import 'package:vacapp_mobile/pages/map_view/models/places_info_item.dart';
 abstract class MapElementsList<E> {
   MapElementsList({
     required this.localities,
+    this.onPressed,
     this.placePaintersType,
     this.placeInfoMode,
   });
   List<Locality> localities;
+  void Function(Locality)? onPressed;
   PlacePaintersType? placePaintersType;
   PlacesInfoItem? placeInfoMode;
 
@@ -23,6 +25,7 @@ abstract class MapElementsList<E> {
       E element = await MapElement.factory(
         locality: locality,
         mapElement: getMapElementType(),
+        onPressed: onPressed,
         placePaintersType: placePaintersType,
         placeInfoMode: placeInfoMode,
       ).create();
@@ -37,10 +40,12 @@ abstract class MapElementsList<E> {
 class MarkersList extends MapElementsList<Marker> {
   MarkersList({
     required List<Locality> localities,
+    void Function(Locality)? onPressed,
     PlacePaintersType? placePaintersType,
     PlacesInfoItem? placeInfoMode,
   }) : super(
           localities: localities,
+          onPressed: onPressed,
           placePaintersType: placePaintersType,
           placeInfoMode: placeInfoMode,
         );
@@ -52,10 +57,12 @@ class MarkersList extends MapElementsList<Marker> {
 class PolygonsList extends MapElementsList<Polygon> {
   PolygonsList({
     required List<Locality> localities,
+    void Function(Locality)? onPressed,
     PlacePaintersType? placePaintersType,
     PlacesInfoItem? placeInfoMode,
   }) : super(
           localities: localities,
+          onPressed: onPressed,
           placePaintersType: placePaintersType,
           placeInfoMode: placeInfoMode,
         );

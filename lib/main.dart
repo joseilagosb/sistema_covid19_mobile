@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:vacapp_mobile/navigation_key.dart';
+
 import 'package:vacapp_mobile/pages/landing_page/screens/landing_page_screen.dart';
 
 import 'package:vacapp_mobile/utils/constants.dart';
@@ -14,6 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {'/': (context) => LandingPageScreen.create()},
       title: 'Sistema COVID-19',
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         fontFamily: 'OpenSans',
         primarySwatch: MaterialColor(0xFFFF961E, Constants.COLOR_CODES),

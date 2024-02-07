@@ -3,13 +3,18 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 import 'package:vacapp_mobile/constants/graphql_queries.dart';
+import 'package:vacapp_mobile/common_widgets/custom_dialog.dart';
+import 'package:vacapp_mobile/pages/map_view/widgets/place_info_dialog.dart';
 
 import 'package:vacapp_mobile/pages/map_view/models/locality.dart';
 import 'package:vacapp_mobile/pages/map_view/models/place_type.dart';
 import 'package:vacapp_mobile/pages/map_view/models/places_info_item.dart';
 import 'package:vacapp_mobile/pages/map_view/models/map_elements/map_element_list.dart';
 import 'package:vacapp_mobile/pages/map_view/models/service.dart';
+import 'package:vacapp_mobile/pages/map_view/models/place_snapshot.dart';
+
 import 'package:vacapp_mobile/pages/map_view/utils/coordinates.dart';
 
 import 'package:vacapp_mobile/services/graphql_api.dart';
@@ -57,8 +62,31 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
     List<Service> services = List<Service>.of(
         dataObj["allServices"].map<Service>((service) => Service.fromJson(service)));
 
+    Map<int, PlaceSnapshot> placeSnapshots = await fetchPlaceSnapshots();
+
     emit(MapViewCreatingMapObjects(
-        places: places, areas: areas, placeTypes: placeTypes, services: services));
+      places: places,
+      areas: areas,
+      placeTypes: placeTypes,
+      services: services,
+      placeSnapshots: placeSnapshots,
+    ));
+  }
+
+  Future<Map<int, PlaceSnapshot>> fetchPlaceSnapshots() async {
+    int currentDay = DateTime.now().weekday;
+    int currentHour = DateTime.now().hour;
+
+    Map<String, dynamic> placeSnapshotsObj = await GraphQlApi().runQuery(
+        GraphQlQueries.placeSnapshots,
+        variables: {"day": currentDay, "hour": currentHour});
+
+    Map<int, PlaceSnapshot> placeSnapshots = {
+      for (var placeSnapshot in placeSnapshotsObj["allPlaceSnapshots"])
+        int.parse(placeSnapshot["place_id"]): PlaceSnapshot.fromJson(placeSnapshot)
+    };
+
+    return placeSnapshots;
   }
 
   Future<void> createMapObjects(Emitter<MapViewState> emit, MapViewCreatingMapObjects state) async {
@@ -77,6 +105,12 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
       localities: state.places,
       placePaintersType: initialPlacePaintersType,
       placeInfoMode: initialPlacesInfoMode,
+      onPressed: (locality) => CustomDialog.showCustomDialogWithoutContext(
+        child: PlaceInfoDialog(
+          place: locality as Place,
+          snapshot: state.placeSnapshots[locality.id],
+        ),
+      ),
     ).create();
 
     emit(
@@ -85,10 +119,11 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
         areas: state.areas,
         placeTypes: state.placeTypes,
         services: state.services,
+        placeSnapshots: state.placeSnapshots,
         placePolygons: placePolygons,
         areaPolygons: areaPolygons,
         placeMarkers: placeMarkers,
-        currentMapZoom: 16,
+        currentMapZoom: 15,
         selectedPlaceInfoItem: initialPlacesInfoMode,
         placePaintersType: initialPlacePaintersType,
         isMapLoading: true,
@@ -119,6 +154,12 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
       localities: state.places,
       placePaintersType: state.placePaintersType,
       placeInfoMode: selectedPlacesInfoMode,
+      onPressed: (locality) => CustomDialog.showCustomDialogWithoutContext(
+        child: PlaceInfoDialog(
+          place: locality as Place,
+          snapshot: state.placeSnapshots[locality.id],
+        ),
+      ),
     ).create();
 
     emit(
@@ -149,6 +190,12 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
         localities: state.places,
         placePaintersType: newPlacePaintersType,
         placeInfoMode: state.selectedPlaceInfoItem,
+        onPressed: (locality) => CustomDialog.showCustomDialogWithoutContext(
+          child: PlaceInfoDialog(
+            place: locality as Place,
+            snapshot: state.placeSnapshots[locality.id],
+          ),
+        ),
       ).create();
 
       emit(
@@ -190,6 +237,12 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
           state.placesFilterType == PlacesFilterType.none ? state.places : state.filteredPlaces,
       placePaintersType: state.placePaintersType,
       placeInfoMode: state.selectedPlaceInfoItem,
+      onPressed: (locality) => CustomDialog.showCustomDialogWithoutContext(
+        child: PlaceInfoDialog(
+          place: locality as Place,
+          snapshot: state.placeSnapshots[locality.id],
+        ),
+      ),
     ).create();
 
     emit(
@@ -213,12 +266,11 @@ Future<void> restoreFilters(Emitter<MapViewState> emit, MapViewLoaded state) asy
 }
 
 Future<void> moveCameraToArea(Emitter<MapViewState> emit, MapViewLoaded state, Area area) async {
-  LatLng center = CenterCalculator.calculateCenterOfCoordinates(area.coordinates);
-
+  LatLng areaCenter = CenterCalculator.calculateCenterOfCoordinates(area.coordinates);
   state.mapController!.animateCamera(
     CameraUpdate.newCameraPosition(
       CameraPosition(
-        target: center,
+        target: areaCenter,
         zoom: state.currentMapZoom.toDouble(),
       ),
     ),

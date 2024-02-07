@@ -4,6 +4,9 @@ import 'package:vacapp_mobile/constants/null_objects.dart';
 import 'package:vacapp_mobile/pages/map_view/models/coordinate.dart';
 import 'package:vacapp_mobile/pages/map_view/models/place_type.dart';
 import 'package:vacapp_mobile/pages/map_view/models/service.dart';
+import 'package:vacapp_mobile/pages/map_view/models/place_working_day.dart';
+
+import 'package:vacapp_mobile/utils/time.dart';
 
 abstract class Locality {
   int id;
@@ -25,14 +28,68 @@ abstract class Locality {
 class Place extends Locality {
   PlaceType type;
   List<Service> services;
+  num surface;
+  num attentionSurface;
+  Map<int, PlaceWorkingDay> workingDays;
 
   Place.fromJson(Map<String, dynamic> json)
       : type = PlaceType.fromJson(json["place_type"]),
         services = json["services"].map<Service>((service) => Service.fromJson(service)).toList(),
+        surface = json["surface"],
+        attentionSurface = json["attention_surface"],
+        workingDays = {
+          for (var workingDay in json["place_working_days"])
+            workingDay["day_of_week"]: PlaceWorkingDay.fromJson(workingDay)
+        },
         super.fromJson({...json, "name": json["place_short_name"]});
 
   @override
   String toString() => "place_$id";
+
+  bool opensToday() {
+    return workingDays.containsKey(DateTime.now().weekday - 1);
+  }
+
+  bool isCurrentlyOpen() {
+    if (!opensToday()) {
+      return false;
+    }
+
+    if (isOpen247()) {
+      return true;
+    }
+
+    DateTime currentHour = TimeUtilities.timeStringToDateTime(DateTime.now().hour);
+    PlaceWorkingDay workingDay = workingDays[DateTime.now().weekday - 1]!;
+
+    if (workingDay.openingTime.isAfter(currentHour) ||
+        workingDay.closingTime.isBefore(currentHour) ||
+        workingDay.closingTime.isAtSameMomentAs(currentHour)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  bool isOpen247() {
+    if (!opensToday()) {
+      return false;
+    }
+
+    PlaceWorkingDay workingDay = workingDays[DateTime.now().weekday - 1]!;
+
+    if (workingDay.openingTime.hour == 0 &&
+        workingDay.closingTime.hour == 23 &&
+        workingDay.closingTime.minute == 59) {
+      return true;
+    }
+
+    return false;
+  }
+
+  double calculatePopulationDensity(int crowdPeopleNo, int queuePeopleNo) {
+    return ((crowdPeopleNo - queuePeopleNo) / (attentionSurface / 10));
+  }
 
   static List<Place> filterByTypes(List<Place> places, List<int> typesList) {
     List<Place> filteredPlaces =
