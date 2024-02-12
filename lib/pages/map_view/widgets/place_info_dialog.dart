@@ -327,7 +327,7 @@ class _PlaceInfoDialogState extends State<PlaceInfoDialog> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const PlaceDetailsScreen(),
+        builder: (context) => PlaceDetailsScreen.create(widget.place.id),
       ),
     );
   }
