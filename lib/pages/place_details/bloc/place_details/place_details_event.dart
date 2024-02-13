@@ -5,5 +5,5 @@ class PlaceDetailsEvent {}
 
 class FetchData extends PlaceDetailsEvent {
   FetchData({required this.placeId});
-  int placeId;
+  final int placeId;
 }

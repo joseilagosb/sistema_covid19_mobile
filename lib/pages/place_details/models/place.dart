@@ -91,4 +91,12 @@ class Place {
   static double getPopulationDensity(int crowdNumber, int queueNumber, int attentionSurface) {
     return ((crowdNumber - queueNumber) / (attentionSurface / 10));
   }
+
+  DateTime? getTodayOpeningTime() {
+    return workingDays[DateTime.now().weekday - 1]?.openingTime;
+  }
+
+  DateTime? getTodayClosingTime() {
+    return workingDays[DateTime.now().weekday - 1]?.closingTime;
+  }
 }

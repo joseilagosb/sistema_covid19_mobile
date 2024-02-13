@@ -11,4 +11,13 @@ class QueueData {
         queueDayOfWeek = json['queue_day_of_week'],
         queueHour = json['queue_hour'],
         peopleNo = json['people_no'];
+
+  static int getQueueFromDayHour(List<QueueData> queueData, int dayOfWeek, int hour) {
+    for (int i = 0; i < queueData.length; i++) {
+      if ((queueData[i].queueDayOfWeek == dayOfWeek) && (queueData[i].queueHour == hour)) {
+        return queueData[i].peopleNo;
+      }
+    }
+    return -1;
+  }
 }

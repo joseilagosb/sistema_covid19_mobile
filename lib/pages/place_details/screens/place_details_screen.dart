@@ -4,11 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vacapp_mobile/common_widgets/loading_spinner.dart';
 import 'package:vacapp_mobile/common_widgets/custom_app_bar.dart';
 
-import 'package:vacapp_mobile/pages/place_details/bloc/place_details_bloc.dart';
+import 'package:vacapp_mobile/pages/place_details/bloc/place_details/place_details_bloc.dart';
 
 import 'package:vacapp_mobile/pages/place_details/widgets/place_image_container.dart';
 import 'package:vacapp_mobile/pages/place_details/widgets/place_overall_info.dart';
 import 'package:vacapp_mobile/pages/place_details/widgets/crowds_calendar.dart';
+import 'package:vacapp_mobile/pages/place_details/widgets/crowd_recommendations.dart';
 import 'package:vacapp_mobile/pages/place_details/widgets/indicator_stats.dart';
 import 'package:vacapp_mobile/pages/place_details/widgets/about_place.dart';
 
@@ -79,8 +80,9 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
       const SizedBox(height: 5),
       const Divider(),
       const SizedBox(height: 5),
-      CrowdsCalendar(place: state.place, crowdReport: state.crowdReport),
+      CrowdsCalendar.create(state.place),
       const SizedBox(height: 20),
+      CrowdRecommendations(crowdReport: state.crowdReport),
       IndicatorStats(place: state.place),
       const SizedBox(height: 20),
       AboutPlace(place: state.place),

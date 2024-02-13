@@ -27,6 +27,11 @@ class PlaceDetailsBloc extends Bloc<PlaceDetailsEvent, PlaceDetailsState> {
     Map<String, dynamic> crowdReportObj =
         await graphQlApi.runQuery(GraphQlQueries.placeCrowdReport, variables: {"placeId": placeId});
 
-    emit(PlaceDetailsLoaded(place: place, crowdReport: crowdReportObj["crowdReport"]));
+    emit(
+      PlaceDetailsLoaded(
+        place: place,
+        crowdReport: crowdReportObj["crowdReport"],
+      ),
+    );
   }
 }
