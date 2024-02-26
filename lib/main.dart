@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:vacapp_mobile/navigation_key.dart';
 
 import 'package:vacapp_mobile/pages/landing_page/screens/landing_page_screen.dart';
-
-import 'package:vacapp_mobile/utils/constants.dart';
+import 'package:vacapp_mobile/constants/values.dart';
 
 void main() => runApp(const MyApp());
 
@@ -20,8 +18,8 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       theme: ThemeData(
         fontFamily: 'OpenSans',
-        primarySwatch: MaterialColor(0xFFFF961E, Constants.COLOR_CODES),
-        scaffoldBackgroundColor: MaterialColor(0xFF961E, Constants.COLOR_CODES)[900],
+        primarySwatch: const MaterialColor(0xFFFF961E, Values.colorCodes),
+        scaffoldBackgroundColor: const MaterialColor(0xFF961E, Values.colorCodes)[900],
         primaryIconTheme: const IconThemeData(color: Colors.white),
         primaryTextTheme:
             Theme.of(context).textTheme.apply(displayColor: Colors.black, fontFamily: 'OpenSans'),

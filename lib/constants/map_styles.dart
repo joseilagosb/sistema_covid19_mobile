@@ -1,5 +1,5 @@
 class MapStyles {
-  static const String DEFAULT_STYLE = """[
+  static const String defaultStyle = """[
     {
       "elementType": "geometry",
       "stylers": [

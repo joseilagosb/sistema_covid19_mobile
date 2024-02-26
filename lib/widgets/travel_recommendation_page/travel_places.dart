@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:vacapp_mobile/classes/place.dart';
 import 'package:vacapp_mobile/classes/placeReport.dart';
 
 class TravelPlaces extends StatefulWidget {
@@ -33,15 +32,9 @@ class _TravelPlacesState extends State<TravelPlaces> {
                   Image.asset("assets/icons/markerno/${i + 1}.png", height: 50)
                 ]),
                 title: Text(widget.placeReports[i].getPlace().getName(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontSize: 18.0)),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 18.0)),
                 subtitle: Text(widget.placeReports[i].getPlace().getAddress(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(fontSize: 14.0)),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14.0)),
                 children: <Widget>[
                   Container(
                     alignment: Alignment.centerLeft,
@@ -53,16 +46,11 @@ class _TravelPlacesState extends State<TravelPlaces> {
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!
-                                  .copyWith(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w800)),
+                                  .copyWith(fontSize: 14.0, fontWeight: FontWeight.w800)),
                           TextSpan(
-                              text:
-                                  '${widget.placeReports[i].getDistanceToStart()} km',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(fontSize: 14.0)),
+                              text: '${widget.placeReports[i].getDistanceToStart()} km',
+                              style:
+                                  Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14.0)),
                         ],
                       ),
                     ),
@@ -78,38 +66,31 @@ class _TravelPlacesState extends State<TravelPlaces> {
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!
-                                  .copyWith(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w800)),
+                                  .copyWith(fontSize: 14.0, fontWeight: FontWeight.w800)),
                           TextSpan(
-                              text:
-                                  '${widget.placeReports[i].getPlace().getType().getName()}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(fontSize: 14.0)),
+                              text: '${widget.placeReports[i].getPlace().getType().getName()}',
+                              style:
+                                  Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 14.0)),
                         ],
                       ),
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text('Servicios',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          fontSize: 14.0, fontWeight: FontWeight.w800)),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontSize: 14.0, fontWeight: FontWeight.w800)),
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount:
-                        widget.placeReports[i].getPlace().getServices().length,
+                    itemCount: widget.placeReports[i].getPlace().getServices().length,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int j) {
                       return ListTile(
                         dense: true,
                         contentPadding: const EdgeInsets.all(0.0),
                         title: Text(
-                          widget.placeReports[i]
-                              .getPlace()
-                              .getServices()[j]
-                              .getName(),
+                          widget.placeReports[i].getPlace().getServices()[j].getName(),
                         ),
                       );
                     },

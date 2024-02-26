@@ -46,10 +46,6 @@ class CrowdRecommendationsBloc extends Bloc<CrowdRecommendationsEvent, CrowdReco
       }
     }
 
-    // Comenzaremos por defecto con el día lunes.
-    // TODO: Corregir en caso que haya un lugar que no abra los días lunes.
-    int currentDayOfWeek = 1;
-
     emit(CrowdRecommendationsReady(
       todayPeriodItems: todayPeriodItems,
       currentTodayPeriod: todayPeriodItems.keys.first,

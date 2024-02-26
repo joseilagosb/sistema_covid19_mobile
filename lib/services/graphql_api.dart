@@ -26,4 +26,23 @@ class GraphQlApi extends Api {
       return {"error": errorMsg};
     }
   }
+
+  @override
+  Future<Map<String, dynamic>> runMutation(String query,
+      {Map<String, dynamic> variables = const {}}) async {
+    try {
+      QueryResult result = await client.mutate(
+        MutationOptions(document: gql(query), variables: variables),
+      );
+      if (result.hasException) {
+        throw Exception(result.exception.toString());
+      }
+      if (result.data == null) {
+        throw Exception();
+      }
+      return result.data!;
+    } catch (errorMsg) {
+      return {"error": errorMsg};
+    }
+  }
 }

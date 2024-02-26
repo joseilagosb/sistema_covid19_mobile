@@ -5,8 +5,6 @@ import 'package:vacapp_mobile/classes/indicator.dart';
 import 'package:vacapp_mobile/classes/place.dart';
 import 'package:vacapp_mobile/pages/send_feedback/send_feedback_input_page.dart';
 import 'package:vacapp_mobile/pages/send_feedback/login_page.dart';
-import 'package:vacapp_mobile/services/dummy_functions.dart';
-import 'package:vacapp_mobile/services/graphql_functions.dart';
 import 'package:vacapp_mobile/utils/constants.dart';
 
 class SendFeedbackPage extends StatefulWidget {
@@ -35,8 +33,7 @@ class _SendFeedbackPageState extends State<SendFeedbackPage> {
   }
 
   void _openLoginPage(BuildContext context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   @override
@@ -45,18 +42,18 @@ class _SendFeedbackPageState extends State<SendFeedbackPage> {
 
     //IMPLEMENTAR CON VALORES ALMACENADOS EN LA CACHE DEL USUARIO
     //Cuando se cambien los valores, isLoading pasará a ser lastVisitedPlaces == null para el dropdownbutton
-    DummyFunctions.fillPlacesLocal().then((places) {
-      setState(() {
-        lastVisitedPlaces = places;
-      });
+    // DummyFunctions.fillPlacesLocal().then((places) {
+    //   setState(() {
+    //     lastVisitedPlaces = places;
+    //   });
 
-      GraphQLFunctions.fillIndicatorsList().then((resultIndicators) {
-        setState(() {
-          indicators = resultIndicators;
-          isLoading = false;
-        });
-      });
-    });
+    //   GraphQLFunctions.fillIndicatorsList().then((resultIndicators) {
+    //     setState(() {
+    //       indicators = resultIndicators;
+    //       isLoading = false;
+    //     });
+    //   });
+    // });
   }
 
   @override
@@ -115,10 +112,7 @@ class _SendFeedbackPageState extends State<SendFeedbackPage> {
                   child: Text(
                     'Súmate a la red de colaboradores VACAPP para crear un mejor entorno entre todos.',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineSmall!
-                        .copyWith(fontSize: 16.0),
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 16.0),
                   ),
                 ),
                 const SizedBox(height: 5),
@@ -165,9 +159,8 @@ class _SendFeedbackPageState extends State<SendFeedbackPage> {
                       placeId: lastVisitedPlaces[selectedIndex].getId(),
                       placeName: lastVisitedPlaces[selectedIndex].getName(),
                       indicators: indicators
-                          .where((indicator) => Constants
-                              .COVID_SAFETY_INDICATORS
-                              .contains(indicator.getName()))
+                          .where((indicator) =>
+                              Constants.COVID_SAFETY_INDICATORS.contains(indicator.getName()))
                           .toList(),
                     ),
                   ),
@@ -198,9 +191,8 @@ class _SendFeedbackPageState extends State<SendFeedbackPage> {
                       placeId: lastVisitedPlaces[selectedIndex].getId(),
                       placeName: lastVisitedPlaces[selectedIndex].getName(),
                       indicators: indicators
-                          .where((indicator) => Constants
-                              .SERVICE_QUALITY_INDICATORS
-                              .contains(indicator.getName()))
+                          .where((indicator) =>
+                              Constants.SERVICE_QUALITY_INDICATORS.contains(indicator.getName()))
                           .toList(),
                     ),
                   ),
@@ -211,8 +203,8 @@ class _SendFeedbackPageState extends State<SendFeedbackPage> {
                       .textTheme
                       .titleLarge!
                       .copyWith(fontSize: 20.0, fontWeight: FontWeight.w600)),
-              trailing: Icon(Icons.play_arrow,
-                  size: 40.0, color: isLoading ? Colors.grey : Colors.green),
+              trailing:
+                  Icon(Icons.play_arrow, size: 40.0, color: isLoading ? Colors.grey : Colors.green),
             ),
             const SizedBox(height: 10.0),
           ],

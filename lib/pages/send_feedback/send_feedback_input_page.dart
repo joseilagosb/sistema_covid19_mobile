@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:vacapp_mobile/classes/indicator.dart';
-import 'package:vacapp_mobile/utils/constants.dart';
 import 'package:vacapp_mobile/widgets/send_feedback/question.dart';
 
 class SendFeedbackInputPage extends StatefulWidget {
@@ -10,10 +8,7 @@ class SendFeedbackInputPage extends StatefulWidget {
   final List<Indicator> indicators;
 
   const SendFeedbackInputPage(
-      {super.key,
-      required this.placeId,
-      required this.placeName,
-      required this.indicators});
+      {super.key, required this.placeId, required this.placeName, required this.indicators});
 
   @override
   _SendFeedbackInputPageState createState() => _SendFeedbackInputPageState();
@@ -40,9 +35,11 @@ class _SendFeedbackInputPageState extends State<SendFeedbackInputPage> {
 
     for (int i = 0; i < numberOfQuestions; i++) {
       if (widget.indicators[i].getType() == 0) {
-        questionTypes.add(Constants.USERINPUT_RATING);
+        // questionTypes.add(Constants.USERINPUT_RATING);
+        questionTypes.add(0);
       } else if (widget.indicators[i].getType() == 1) {
-        questionTypes.add(Constants.USERINPUT_NUMERIC);
+        // questionTypes.add(Constants.USERINPUT_NUMERIC);
+        questionTypes.add(1);
       }
     }
 
@@ -108,15 +105,11 @@ class _SendFeedbackInputPageState extends State<SendFeedbackInputPage> {
                     children: List.generate(numberOfQuestions, (int index) {
                       return Container(
                         decoration: BoxDecoration(
-                          color: index < currentQuestionNo
-                              ? Colors.orangeAccent
-                              : Colors.grey,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(2.0)),
+                          color: index < currentQuestionNo ? Colors.orangeAccent : Colors.grey,
+                          borderRadius: const BorderRadius.all(Radius.circular(2.0)),
                         ),
                         height: 10.0,
-                        width: (MediaQuery.of(context).size.width - 40.0) /
-                            numberOfQuestions,
+                        width: (MediaQuery.of(context).size.width - 40.0) / numberOfQuestions,
                         margin: EdgeInsets.only(left: index == 0 ? 0.0 : 5.0),
                       );
                     })),
@@ -152,16 +145,14 @@ class _SendFeedbackInputPageState extends State<SendFeedbackInputPage> {
                             onTap: () {
                               setState(() {
                                 currentQuestionNo -= 1;
-                                pageController
-                                    .jumpToPage(currentQuestionNo - 1);
+                                pageController.jumpToPage(currentQuestionNo - 1);
                                 userInput[currentQuestionNo] = null;
                               });
                             },
                             child: const Center(
                               child: Text(
                                 'Anterior',
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.orangeAccent),
+                                style: TextStyle(fontSize: 20.0, color: Colors.orangeAccent),
                               ),
                             ),
                           ),
@@ -197,9 +188,7 @@ class _SendFeedbackInputPageState extends State<SendFeedbackInputPage> {
                       },
                       child: Center(
                         child: Text(
-                          currentQuestionNo < numberOfQuestions
-                              ? 'Siguiente'
-                              : 'Finalizar',
+                          currentQuestionNo < numberOfQuestions ? 'Siguiente' : 'Finalizar',
                           style: const TextStyle(
                             fontSize: 20.0,
                             color: Colors.orangeAccent,

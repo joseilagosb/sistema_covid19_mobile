@@ -12,7 +12,7 @@ import 'package:vacapp_mobile/pages/map_view/widgets/floating_buttons_container.
 
 import 'package:vacapp_mobile/common_widgets/loading_spinner.dart';
 
-import 'package:vacapp_mobile/utils/map_styles.dart';
+import 'package:vacapp_mobile/constants/map_styles.dart';
 
 class MapViewScreen extends StatefulWidget {
   const MapViewScreen({super.key, required this.scaffoldKey, required this.bloc});
@@ -90,7 +90,7 @@ class _MapViewScreenState extends State<MapViewScreen> {
   List<Widget> _buildMapRelatedChildren(BuildContext context, MapViewLoaded state) {
     return [
       GoogleMapView(
-        mapStyle: MapStyles.DEFAULT_STYLE,
+        mapStyle: MapStyles.defaultStyle,
         placePolygons: state.placePolygons,
         areaPolygons: state.areaPolygons,
         placeMarkers: state.placeMarkers,

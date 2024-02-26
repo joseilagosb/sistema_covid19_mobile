@@ -21,11 +21,9 @@ class CrowdData {
   getCrowdHour() => crowdHour;
   getPeopleNo() => peopleNo;
 
-  static int getCrowdDayHour(
-      List<CrowdData> crowdData, int dayOfWeek, int hour) {
+  static int getCrowdDayHour(List<CrowdData> crowdData, int dayOfWeek, int hour) {
     for (int i = 0; i < crowdData.length; i++) {
-      if ((crowdData[i].crowdDayOfWeek == dayOfWeek) &&
-          (crowdData[i].crowdHour == hour)) {
+      if ((crowdData[i].crowdDayOfWeek == dayOfWeek) && (crowdData[i].crowdHour == hour)) {
         return crowdData[i].getPeopleNo();
       }
     }
@@ -41,26 +39,20 @@ class CrowdData {
     for (int i = 1; i < 24; i++) {
       List<CrowdData> extractedCrowds = extractCrowdsByHour(crowdData, i);
       if (extractedCrowds.isNotEmpty) {
-        averageCrowdsByHour
-            .add({'time': i, 'peopleNo': crowdAverage(extractedCrowds)});
+        averageCrowdsByHour.add({'time': i, 'peopleNo': crowdAverage(extractedCrowds)});
       }
     }
 
-    averageCrowdsByHour.sort(
-        (current, next) => current['peopleNo'].compareTo(next['peopleNo']));
+    averageCrowdsByHour.sort((current, next) => current['peopleNo'].compareTo(next['peopleNo']));
 
     return averageCrowdsByHour;
   }
 
-  static List<CrowdData> extractCrowdsByDay(
-      List<CrowdData> crowdData, int day) {
-    return crowdData
-        .where((crowd) => crowd.getCrowdDayOfWeek() == day)
-        .toList();
+  static List<CrowdData> extractCrowdsByDay(List<CrowdData> crowdData, int day) {
+    return crowdData.where((crowd) => crowd.getCrowdDayOfWeek() == day).toList();
   }
 
-  static List<CrowdData> extractCrowdsByTimeOfDay(
-      List<CrowdData> crowdData, int timeOfDay) {
+  static List<CrowdData> extractCrowdsByTimeOfDay(List<CrowdData> crowdData, int timeOfDay) {
     List<CrowdData> resultCrowdData = [];
     switch (timeOfDay) {
       case Constants.TIMEOFDAY_MORNING:
@@ -81,11 +73,8 @@ class CrowdData {
   }
 
   //TODO: Desaparecer luego de pasar la otra func a backend
-  static List<CrowdData> extractCrowdsByHour(
-      List<CrowdData> crowdData, int hour) {
-    return crowdData
-        .where((crowd) => (crowd != null && crowd.getCrowdHour() == hour))
-        .toList();
+  static List<CrowdData> extractCrowdsByHour(List<CrowdData> crowdData, int hour) {
+    return crowdData.where((crowd) => (crowd.getCrowdHour() == hour)).toList();
   }
 
   static int crowdAverage(List<CrowdData> crowdData) {
@@ -96,19 +85,14 @@ class CrowdData {
         .round();
   }
 
-  static List<CrowdData> extractCrowdsByCategory(
-      List<CrowdData> crowdData, int criteria) {
+  static List<CrowdData> extractCrowdsByCategory(List<CrowdData> crowdData, int criteria) {
     switch (criteria) {
       // case Constants.GENERAL_CROWD_RECOMMENDATION:
       //   return crowdData;
       case Constants.WEEKDAYS_CROWD_RECOMMENDATION:
-        return crowdData
-            .where((crowd) => crowd.getCrowdDayOfWeek() <= 5)
-            .toList();
+        return crowdData.where((crowd) => crowd.getCrowdDayOfWeek() <= 5).toList();
       case Constants.WEEKENDS_CROWD_RECOMMENDATION:
-        return crowdData
-            .where((crowd) => crowd.getCrowdDayOfWeek() > 5)
-            .toList();
+        return crowdData.where((crowd) => crowd.getCrowdDayOfWeek() > 5).toList();
       default:
         return [];
     }

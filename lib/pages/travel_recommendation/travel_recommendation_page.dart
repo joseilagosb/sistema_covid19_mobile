@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:vacapp_mobile/classes/place.dart';
 import 'package:vacapp_mobile/classes/travelReport.dart';
 
 import 'package:vacapp_mobile/services/google_maps_functions.dart';
@@ -40,8 +39,7 @@ class TravelRecommendationPage extends StatefulWidget {
   final String exitTime;
 
   @override
-  _TravelRecommendationPageState createState() =>
-      _TravelRecommendationPageState();
+  _TravelRecommendationPageState createState() => _TravelRecommendationPageState();
 }
 
 class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
@@ -63,17 +61,14 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
           context: context,
           builder: (context) => AlertDialog(
             title: const Text('¿Deseas salir de aquí?'),
-            content: const Text(
-                'El reporte se perderá si no lo has guardado previamente.'),
+            content: const Text('El reporte se perderá si no lo has guardado previamente.'),
             actions: <Widget>[
               TextButton(
-                onPressed: () =>
-                    Navigator.of(context).popUntil((route) => route.isFirst),
+                onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
                 child: const Text('No'),
               ),
               TextButton(
-                onPressed: () =>
-                    Navigator.of(context).popUntil((route) => route.isFirst),
+                onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
                 // Navigator.of(context).pop(true),
                 child: const Text('Sí'),
               ),
@@ -88,8 +83,8 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
     mapController.setMapStyle(mapStyle);
 
     setState(() {
-      controller.animateCamera(CameraUpdate.newLatLngBounds(
-          GoogleMapsFunctions.markerBounds(placeMarkers), 60));
+      controller.animateCamera(
+          CameraUpdate.newLatLngBounds(GoogleMapsFunctions.markerBounds(placeMarkers), 60));
     });
   }
 
@@ -101,39 +96,28 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
     });
 
     BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(size: Size(48, 48)),
-            'assets/icons/markerno/0.png')
+            const ImageConfiguration(size: Size(48, 48)), 'assets/icons/markerno/0.png')
         .then((customIcon) {
-      placeMarkers.add(
-        GoogleMapsFunctions.getPlaceMarker(
-            0,
-            false,
-            LatLng(widget.initialPositionLatitude,
-                widget.initialPositionLongitude),
-            customIcon),
-      );
+      // placeMarkers.add(
+      //   GoogleMapsFunctions.getPlaceMarker(
+      //       0,
+      //       false,
+      //       LatLng(widget.initialPositionLatitude,
+      //           widget.initialPositionLongitude),
+      //       customIcon),
+      // );
     });
 
-    placeCentroids.add(LatLng(
-        widget.initialPositionLatitude, widget.initialPositionLongitude));
+    placeCentroids.add(LatLng(widget.initialPositionLatitude, widget.initialPositionLongitude));
 
     for (var i = 0; i < widget.travelReport.getPlaceReports().length; i++) {
       List<LatLng> coords = [];
 
       for (var j = 0;
-          j <
-              widget.travelReport
-                  .getPlaceReports()[i]
-                  .getPlace()
-                  .coordinates
-                  .length;
+          j < widget.travelReport.getPlaceReports()[i].getPlace().coordinates.length;
           j++) {
         coords.add(LatLng(
-            widget.travelReport
-                .getPlaceReports()[i]
-                .getPlace()
-                .getCoordinates()[j]
-                .getLatitude(),
+            widget.travelReport.getPlaceReports()[i].getPlace().getCoordinates()[j].getLatitude(),
             widget.travelReport
                 .getPlaceReports()[i]
                 .getPlace()
@@ -145,11 +129,10 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
       placeCentroids.add(centroid);
 
       BitmapDescriptor.fromAssetImage(
-              const ImageConfiguration(size: Size(48, 48)),
-              'assets/icons/markerno/${i + 1}.png')
+              const ImageConfiguration(size: Size(48, 48)), 'assets/icons/markerno/${i + 1}.png')
           .then((customIcon) {
-        placeMarkers.add(GoogleMapsFunctions.getPlaceMarker(
-            i + 1, false, centroid, customIcon));
+        // placeMarkers.add(GoogleMapsFunctions.getPlaceMarker(
+        //     i + 1, false, centroid, customIcon));
       });
     }
 
@@ -195,8 +178,8 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
                       onMapCreated: _onMapCreated,
                       zoomControlsEnabled: false,
                       initialCameraPosition: CameraPosition(
-                        target: LatLng(widget.initialPositionLatitude,
-                            widget.initialPositionLongitude),
+                        target:
+                            LatLng(widget.initialPositionLatitude, widget.initialPositionLongitude),
                         zoom: 16.0,
                       ),
                       myLocationEnabled: false,
@@ -213,8 +196,7 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
                       height: 30.0,
                       width: 150.0,
                       alignment: Alignment.center,
-                      color:
-                          MaterialColor(0xFFFF961E, Constants.COLOR_CODES)[300],
+                      color: Colors.orange,
                       child: Text(
                         "${Constants.DAYS_OF_WEEK[widget.exitDay]} ${widget.exitTime} horas",
                         textAlign: TextAlign.center,
@@ -229,8 +211,7 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
                     padding: const EdgeInsets.all(5.0),
                     alignment: Alignment.bottomRight,
                     child: FloatingActionButton(
-                      backgroundColor:
-                          MaterialColor(0xFFFF961E, Constants.COLOR_CODES)[300],
+                      backgroundColor: Colors.orange,
                       onPressed: () {},
                       child: const Icon(Icons.directions_walk),
                     ),
@@ -259,16 +240,13 @@ class _TravelRecommendationPageState extends State<TravelRecommendationPage> {
                   child: Column(
                     children: <Widget>[
                       TravelInfo(
-                          travelTime: widget.travelReport.getTravelTime(),
-                          totalDistance: 2.45),
+                          travelTime: widget.travelReport.getTravelTime(), totalDistance: 2.45),
                       const Divider(),
                       Expanded(
                         child: PageView(
                           controller: travelPageController,
                           children: [
-                            TravelPlaces(
-                                placeReports:
-                                    widget.travelReport.getPlaceReports()),
+                            TravelPlaces(placeReports: widget.travelReport.getPlaceReports()),
                             TravelRequirements(),
                           ],
                         ),

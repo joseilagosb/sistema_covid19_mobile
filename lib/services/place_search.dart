@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vacapp_mobile/classes/place.dart';
-import 'package:vacapp_mobile/pages/place_details/place_details_page.dart';
-
-import 'package:vacapp_mobile/services/graphql_functions.dart';
 
 //Arreglar de manera que se llene una inistancia de lugar y se abra el place_stats con info completa
 
@@ -51,26 +48,7 @@ class PlaceSearch extends SearchDelegate<String> {
         itemCount: suggestions.length,
         itemBuilder: (context, index) {
           return ListTile(
-            onTap: () {
-              GraphQLFunctions.fillPlace(suggestions[index].getId()).then(
-                (place) {
-                  if (place == null) return;
-                  GraphQLFunctions.generateCrowdReport(place.getId()).then(
-                    (crowdReport) async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PlaceDetailsPage(
-                            place: place,
-                            crowdReport: crowdReport,
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              );
-            },
+            onTap: () {},
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

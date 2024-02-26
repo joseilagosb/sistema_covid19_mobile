@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:vacapp_mobile/services/graphql_functions.dart';
-import 'package:vacapp_mobile/services/time_management_functions.dart';
 
 import 'package:vacapp_mobile/widgets/travel_scheduler/input/day_time_transport_input.dart';
 import 'package:vacapp_mobile/widgets/travel_scheduler/input/placetype_service_input.dart';
 import 'package:vacapp_mobile/widgets/travel_scheduler/input/starting_point_input_page.dart';
 
 import 'package:vacapp_mobile/pages/travel_recommendation/travel_recommendation_page.dart';
-
-import 'package:vacapp_mobile/services/dummy_functions.dart';
 
 class TravelSchedulerInputPage extends StatefulWidget {
   const TravelSchedulerInputPage({super.key});
@@ -50,12 +45,18 @@ class _TravelSchedulerInputPageState extends State<TravelSchedulerInputPage> {
         false;
   }
 
+  String timeOfDayToString(TimeOfDay time) {
+    String hour = time.hour < 10 ? "0${time.hour}" : time.hour.toString();
+    String minutes = time.minute < 10 ? "0${time.minute}" : time.minute.toString();
+    return "$hour:$minutes";
+  }
+
   void callTravelScheduler() {
     int filter = userInput[1]['option'];
     String city = "Osorno";
     double startingPointLatitude = userInput[0].latitude;
     double startingPointLongitude = userInput[0].longitude;
-    String exitTime = TimeManagementFunctions.timeOfDayToString(userInput[2]['time']);
+    String exitTime = timeOfDayToString(userInput[2]['time']);
     int exitDay = userInput[2]['day'] + 1;
     int transportType = userInput[2]['transport_type'];
 

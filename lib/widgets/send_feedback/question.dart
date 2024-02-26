@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:vacapp_mobile/utils/constants.dart';
 import 'package:vacapp_mobile/widgets/send_feedback/input/rating_input.dart';
 
@@ -39,7 +38,8 @@ class _QuestionState extends State<Question> {
 
   Widget getInputWidget() {
     switch (widget.questionType) {
-      case Constants.USERINPUT_RATING:
+      // case Constants.USERINPUT_RATING:
+      case 1:
         return RatingInput(
           initialValue: widget.initialValue?.toDouble(),
           onChangeRating: (rating) => {
@@ -61,16 +61,11 @@ class _QuestionState extends State<Question> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Text('ITEM ${widget.questionNo}:',
-            style: Theme.of(context).textTheme.headlineMedium),
+        Text('ITEM ${widget.questionNo}:', style: Theme.of(context).textTheme.headlineMedium),
         const SizedBox(height: 16.0),
-        Container(
-            child: Text(widget.questionString,
-                style: Theme.of(context).textTheme.headlineSmall)),
+        Text(widget.questionString, style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(height: 16.0),
-        Expanded(
-            child: Container(
-                alignment: Alignment.center, child: getInputWidget())),
+        Expanded(child: Container(alignment: Alignment.center, child: getInputWidget())),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 30.0),
           child: Text(
@@ -84,15 +79,13 @@ class _QuestionState extends State<Question> {
           ),
         ),
         const Divider(),
-        Container(
-          child: Text(
-            widget.questionHint,
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(color: Colors.grey[700], fontSize: 18.0),
-          ),
-        )
+        Text(
+          widget.questionHint,
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(color: Colors.grey[700], fontSize: 18.0),
+        ),
       ],
     );
   }

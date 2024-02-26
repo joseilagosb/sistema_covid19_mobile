@@ -10,4 +10,9 @@ class MockApi extends Api {
     await Future.delayed(const Duration(milliseconds: 2000));
     return parsedJson;
   }
+
+  @override
+  Future<Map<String, dynamic>> runMutation(String query) async {
+    throw UnimplementedError();
+  }
 }
