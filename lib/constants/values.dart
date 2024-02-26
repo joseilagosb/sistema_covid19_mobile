@@ -35,4 +35,6 @@ class Values {
     "10:00 p.m.",
     "11:00 p.m.",
   ];
+  static const periodsOfDay = ["Mañana", "Tarde", "Noche"];
+  static const dayTypes = ["Días laborales", "Fin de semana"];
 }

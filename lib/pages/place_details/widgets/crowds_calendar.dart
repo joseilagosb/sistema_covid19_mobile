@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:vacapp_mobile/common_widgets/custom_dropdown.dart';
+
 import 'package:vacapp_mobile/pages/place_details/bloc/crowds_calendar/crowds_calendar_bloc.dart';
 import 'package:vacapp_mobile/pages/place_details/models/place.dart';
 
@@ -69,39 +71,17 @@ class _CrowdsCalendarState extends State<CrowdsCalendar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        DropdownButton(
+        CustomDropdown(
+          items: state.dayItemsMap,
           value: state.selectedDay,
-          items: state.dayItemsMap
-              .map((index, string) {
-                return MapEntry(
-                  index,
-                  DropdownMenuItem(
-                    value: index,
-                    child: Text(string),
-                  ),
-                );
-              })
-              .values
-              .toList(),
           onChanged: (value) => widget.bloc.add(ChangeDay(day: value!, place: widget.place)),
         ),
         const SizedBox(width: 20),
-        DropdownButton(
+        CustomDropdown(
+          items: state.hourItemsMap,
           value: state.selectedHour,
-          items: state.hourItemsMap
-              .map((index, string) {
-                return MapEntry(
-                  index,
-                  DropdownMenuItem(
-                    value: index,
-                    child: Text(string),
-                  ),
-                );
-              })
-              .values
-              .toList(),
           onChanged: (value) => widget.bloc.add(ChangeHour(hour: value!, place: widget.place)),
-        )
+        ),
       ],
     );
   }
