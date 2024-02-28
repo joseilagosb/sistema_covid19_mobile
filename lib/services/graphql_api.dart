@@ -1,13 +1,33 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+
 import 'package:vacapp_mobile/services/api.dart';
 
 class GraphQlApi extends Api {
-  static final GraphQLClient client = GraphQLClient(
-    link: HttpLink("http://10.0.2.2:3000/graphql"),
-    cache: GraphQLCache(store: InMemoryStore()),
-  );
+  final GraphQLClient client;
 
-  // TODO: BETTER ERROR HANDLING
+  GraphQlApi._(this.client);
+  static Future<GraphQlApi> create() async {
+    GraphQLClient client = _createClient();
+    return GraphQlApi._(client);
+  }
+
+  static GraphQLClient _createClient() {
+    Link authLink = AuthLink(getToken: () async {
+      String? token = await const FlutterSecureStorage().read(key: "client_app_token");
+      if (token == null) {
+        return "";
+      }
+      return "Bearer $token";
+    });
+    Link httpLink = HttpLink("http://10.0.2.2:3000/graphql");
+    Link mergedLink = Link.from([authLink, httpLink]);
+    return GraphQLClient(
+      link: mergedLink,
+      cache: GraphQLCache(store: InMemoryStore()),
+    );
+  }
+
   @override
   Future<Map<String, dynamic>> runQuery(String query,
       {Map<String, dynamic> variables = const {}}) async {

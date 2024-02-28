@@ -18,12 +18,18 @@ Map<TabItem, Widget Function(BuildContext, GlobalKey<ScaffoldState>)> get _widge
 }
 
 class LandingPageScreen extends StatefulWidget {
-  const LandingPageScreen({super.key});
+  const LandingPageScreen({super.key, required this.bloc});
+  final LandingPageBloc bloc;
 
   static Widget create() {
     return BlocProvider<LandingPageBloc>(
       create: (_) => LandingPageBloc(),
-      child: const LandingPageScreen(),
+      child: Builder(
+        builder: (context) {
+          LandingPageBloc bloc = BlocProvider.of<LandingPageBloc>(context);
+          return LandingPageScreen(bloc: bloc);
+        },
+      ),
     );
   }
 
@@ -40,7 +46,6 @@ class _LandingPageScreenState extends State<LandingPageScreen> {
   @override
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
-    LandingPageBloc bloc = BlocProvider.of<LandingPageBloc>(context);
 
     return BlocBuilder<LandingPageBloc, LandingPageState>(
       builder: (context, state) {
@@ -58,7 +63,7 @@ class _LandingPageScreenState extends State<LandingPageScreen> {
               _buildItem(TabItem.collaborationPanel, state.currentTab),
             ],
             currentIndex: state.currentTab.index,
-            onTap: (index) => bloc.add(SelectTab(selectedTab: TabItem.values[index])),
+            onTap: (index) => widget.bloc.add(SelectTab(selectedTab: TabItem.values[index])),
             backgroundColor: Colors.orange,
             selectedItemColor: Colors.black,
           ),

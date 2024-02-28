@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'package:vacapp_mobile/constants/graphql_queries.dart';
 import 'package:vacapp_mobile/common_widgets/custom_dialog.dart';
 import 'package:vacapp_mobile/pages/map_view/widgets/place_info_dialog.dart';
 
@@ -16,6 +15,8 @@ import 'package:vacapp_mobile/pages/map_view/models/service.dart';
 import 'package:vacapp_mobile/pages/map_view/models/place_snapshot.dart';
 
 import 'package:vacapp_mobile/pages/map_view/utils/coordinates.dart';
+
+import 'package:vacapp_mobile/constants/graphql_routes.dart';
 
 import 'package:vacapp_mobile/services/graphql_api.dart';
 
@@ -52,7 +53,10 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
   }
 
   Future<void> fetchData(Emitter<MapViewState> emit) async {
-    Map<String, dynamic> dataObj = await GraphQlApi().runQuery(GraphQlQueries.mapViewData);
+    GraphQlApi api = await GraphQlApi.create();
+    Map<String, dynamic> dataObj = await api.runQuery(
+      GraphQlRoutes.queries[GraphQlQuery.mapViewData]!,
+    );
 
     List<Place> places =
         List<Place>.of(dataObj["allPlaces"].map<Place>((place) => Place.fromJson(place)));
@@ -77,8 +81,9 @@ class MapViewBloc extends Bloc<MapViewEvent, MapViewState> {
     int currentDay = DateTime.now().weekday;
     int currentHour = DateTime.now().hour;
 
-    Map<String, dynamic> placeSnapshotsObj = await GraphQlApi().runQuery(
-        GraphQlQueries.placeSnapshots,
+    GraphQlApi api = await GraphQlApi.create();
+    Map<String, dynamic> placeSnapshotsObj = await api.runQuery(
+        GraphQlRoutes.queries[GraphQlQuery.placeSnapshots]!,
         variables: {"day": currentDay, "hour": currentHour});
 
     Map<int, PlaceSnapshot> placeSnapshots = {
